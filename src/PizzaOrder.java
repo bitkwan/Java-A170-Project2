@@ -27,6 +27,8 @@ public class PizzaOrder {
 		
 		if(name.equalsIgnoreCase("Sebastian")||name.equalsIgnoreCase("Jinghua")) {
 			discount=true;
+			System.out.println("You're eligible for a $2.00 discount.");
+			totalDiscount="*** $2 Discount Applied ***\n";
 		}
 	
 		
@@ -47,10 +49,7 @@ public class PizzaOrder {
 		due = due+ Double.parseDouble(toppingData[2]);
 		
 		// discount
-		if(discount) {
-			due=due-2.0;
-			totalDiscount="*** $2 Discount Applied ***\n";
-		}
+		due=(discount)?due-2.0:due;
 		
 		// tax
 		tax = (taxReq)?due*0.0775:0;
