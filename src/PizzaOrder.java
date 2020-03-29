@@ -17,11 +17,17 @@ public class PizzaOrder {
 		String[] toppingData;
 		double tax;
 		final boolean taxReq = true;
+		boolean discount=false;
+		String totalDiscount = "";
 		
 		// greeting
 		System.out.println("Welcoem to Sebastian and Jinghua's Pizza Company! ");
 		System.out.print("Please enter your name: ");
 		name = in.next();
+		
+		if(name.equalsIgnoreCase("Sebastian")||name.equalsIgnoreCase("Jinghua")) {
+			discount=true;
+		}
 	
 		
 		// based price
@@ -40,6 +46,12 @@ public class PizzaOrder {
 		// pre tax
 		due = due+ Double.parseDouble(toppingData[2]);
 		
+		// discount
+		if(discount) {
+			due=due-2.0;
+			totalDiscount="*** $2 Discount Applied ***\n";
+		}
+		
 		// tax
 		tax = (taxReq)?due*0.0775:0;
 		
@@ -53,17 +65,20 @@ public class PizzaOrder {
 		System.out.println(due+tax);*/
 		
 		System.out.printf("%n%n---Thank You For Your Order!--- %n%n"
+				+ "%s, %n"
 				+ "Your order is as follows: %n"
 				+ "%d-inch pizza%n"
 				+ "%s crust%n"
-				+ "%s%n"
-				+ "The cost of your order is: $%.2f %n"
+				+ "%s %n"
+				+ "%sThe cost of your order is: $%.2f%n"
 				+ "The tax is: $%.2f %n"
 				+ "The total due is: $%.2f %n"
 				+ "Your order will be ready for pickup in 30 minutes.",
+				name,
 				size,
 				curstFull(crust),
 				toppingData[0],
+				totalDiscount,
 				due,
 				tax,
 				due+tax);
@@ -136,7 +151,7 @@ public class PizzaOrder {
 		
 		System.out.printf("All pizzas come with cheese.%n" + 
 				"Additional toppings are $1.25 each, choose from:%n" + 
-				"Pepperoni, Sausage, Onion, Mushroom");
+				"Pepperoni, Sausage, Onion, Mushroom %n");
 		
 		// asking for pepperoni
 		do {
