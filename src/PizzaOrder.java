@@ -35,6 +35,7 @@ public class PizzaOrder {
 		// based price
 		size = sizeInput();
 		due = sizePricing(size);
+		size = (due==12.99)?12:size;
 		
 		// crust
 		do {
@@ -54,21 +55,12 @@ public class PizzaOrder {
 		// tax
 		tax = (taxReq)?due*0.0775:0;
 		
-		/****for debug only****/
-		
-		/*System.out.println(size);
-		System.out.println(curstFull(crust));
-		System.out.println(toppingData[0]);
-		System.out.println(due);
-		System.out.println(tax);
-		System.out.println(due+tax);*/
-		
 		System.out.printf("%n%n---Thank You For Your Order!--- %n%n"
 				+ "%s, %n"
 				+ "Your order is as follows: %n"
 				+ "%d-inch pizza%n"
 				+ "%s crust%n"
-				+ "%s %n"
+				+ "[%s Topping(s)] %s %n"
 				+ "%sThe cost of your order is: $%.2f%n"
 				+ "The tax is: $%.2f %n"
 				+ "The total due is: $%.2f %n"
@@ -76,6 +68,7 @@ public class PizzaOrder {
 				name,
 				size,
 				curstFull(crust),
+				toppingData[1],
 				toppingData[0],
 				totalDiscount,
 				due,
